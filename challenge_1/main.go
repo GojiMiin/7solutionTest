@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 )
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 
 func readFile() ([][]int, error) {
 	var arr [][]int
-	jsonFile, openErr := ioutil.ReadFile("files/hard.json")
+	jsonFile, openErr := os.ReadFile("files/hard.json")
 	if openErr != nil {
 		return nil, openErr
 	}
