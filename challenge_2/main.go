@@ -16,19 +16,21 @@ func main() {
 	input = strings.ToUpper(input[:len(input)-2])
 	fmt.Println("input : ", len(input))
 
-	repeatLetter, repeatTimes := countRepeatLetter(input)
+	repeatLetter, repeatTimes, repeatLoc := countRepeatLetter(input)
 	fmt.Println("letter : ", repeatLetter)
 	fmt.Println("mostRepeat : ", repeatTimes)
-
+	fmt.Println("loc : ", repeatLoc)
 }
 
-func countRepeatLetter(input string) (string, int) {
+func countRepeatLetter(input string) (string, int, int) {
 	currentRepeat := 1
 	repeatLetter := "L"
+	startRepeatLoc := 0
 	mostRepeat := 1
 	mostRepeatLetter := ""
+	startMostRepeat := 0
 
-	for _, v := range input {
+	for i, v := range input {
 		letter := string(v)
 		if letter == repeatLetter {
 			currentRepeat += 1
@@ -36,10 +38,13 @@ func countRepeatLetter(input string) (string, int) {
 			if currentRepeat > 1 && currentRepeat > mostRepeat {
 				mostRepeat = currentRepeat
 				mostRepeatLetter = repeatLetter
+				startMostRepeat = startRepeatLoc
 			}
 			currentRepeat = 1
 			repeatLetter = letter
+			startRepeatLoc = i
 		}
 	}
-	return mostRepeatLetter, mostRepeat
+
+	return mostRepeatLetter, mostRepeat, startMostRepeat
 }
