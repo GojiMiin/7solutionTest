@@ -11,14 +11,6 @@ import (
 
 type MeatHandler struct{}
 
-type Customer struct {
-	Id        uint   `gorm:"primary_key" json:"id"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	Age       int    `json:"age"`
-	Email     string `json:"email"`
-}
-
 func (m *MeatHandler) GetSummary(c echo.Context) error {
 	log.Print("start get beef summary")
 	result := map[string]int{}
