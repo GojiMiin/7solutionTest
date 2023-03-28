@@ -28,6 +28,10 @@ func main() {
 
 	for i, v := range input[1:] {
 		decodeArr = compareEncode(string(v), i, decodeArr, &numberToAdd)
+		if decodeArr == nil {
+			log.Fatal("wrong letter in input")
+			os.Exit(1)
+		}
 	}
 
 	for i := 0; i < len(decodeArr); i++ {
@@ -70,6 +74,6 @@ func compareEncode(curLetter string, curLoc int, decoded []int, numberToAdd *int
 		newDecoded := append(decoded, curDecoded)
 		return newDecoded
 	default:
-		return []int{}
+		return nil
 	}
 }
